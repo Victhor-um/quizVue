@@ -42,6 +42,7 @@ export const data = {
         },
       ],
     },
+
     {
       q: 'Find the missing letter: C_ke',
       answers: [
@@ -59,6 +60,27 @@ export const data = {
         },
       ],
     },
+    {
+      q: 'Как зовут  "Эдика"?',
+      answers: [
+        {
+          text: 'Ra1n-xD',
+          is_correct: false,
+        },
+        {
+          text: 'Дощъ',
+          is_correct: false,
+        },
+        {
+          text: 'пЭдуард',
+          is_correct: true,
+        },
+        {
+          text: 'Дощь (пЭдик)',
+          is_correct: false,
+        },
+      ],
+    },
   ],
   results: [
     {
@@ -72,6 +94,12 @@ export const data = {
       max: 3,
       title: "Wow, you're a genius!",
       desc: 'Studying has definitely paid off for you!',
+    },
+    {
+      min: 4,
+      max: 4,
+      title: 'ВАУ ДА ТЫ ЁБ@НЫЙ Волшебник!',
+      desc: 'Братан, хорош, давай, давай, вперёд! Контент в кайф, можно ещё? Вообще красавчик! Можно вот этого вот почаще?!',
     },
   ],
 };

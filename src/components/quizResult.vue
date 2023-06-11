@@ -1,10 +1,22 @@
 <template>
   <div class="result">
-    <div class="title">You got sample result 1!</div>
-    <div class="desc">Enter a short description here about the result.</div>
+    <div class="title">
+      {{ results[resultIndex].title }} Total correct: {{ totalCorrect }}!
+    </div>
+    <div class="desc">{{ results[resultIndex].desc }}</div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps(['results', 'totalCorrect']);
+
+const resultIndex = computed(() => {
+  return props.results.findIndex((item) => {
+    return item.min <= props.totalCorrect && item.max >= props.totalCorrect;
+  });
+});
+</script>
 
 <style lang="scss" scoped></style>

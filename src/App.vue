@@ -1,11 +1,22 @@
 <template>
   <div class="ctr">
-    <quizQuestions
-      v-if="questionsAnswered < data.questions.length"
-      :questions="data.questions"
-    />
-    <quizResult v-else />
-    <button type="button" class="reset-btn">Reset</button>
+    <Transition name="fade" mode="out-in">
+      <quizQuestions
+        v-if="questionsAnswered < data.questions.length"
+        :questions="data.questions"
+        :questionsAnswered="questionsAnswered"
+        @question-answered="questionAnswered"
+      />
+      <quizResult v-else :results="data.results" :totalCorrect="totalCorrect" />
+    </Transition>
+    <button
+      type="button"
+      class="reset-btn"
+      @click.prevent="reset"
+      v-if="questionsAnswered === data.questions.length"
+    >
+      Reset
+    </button>
   </div>
 </template>
 
@@ -16,6 +27,22 @@ import { ref } from 'vue';
 import { data } from '@/data.js';
 
 const questionsAnswered = ref(0);
+const totalCorrect = ref(0);
+
+function questionAnswered(is_correct) {
+  if (is_correct) {
+    totalCorrect.value++;
+  }
+  questionsAnswered.value++;
+}
+function reset() {
+  totalCorrect.value = 0;
+  questionsAnswered.value = 0;
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+button {
+  cursor: pointer;
+}
+</style>
